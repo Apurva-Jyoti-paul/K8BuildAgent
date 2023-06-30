@@ -21,17 +21,13 @@ spec:
     - /busybox/cat
     tty: true
 '''
-            // Can also wrap individual steps:
-            // container('shell') {
-            //     sh 'hostname'
-            // }
       defaultContainer 'builder'
     }
   }
   stages {
     stage('Build Docker Image') {
       steps { 
-          sh "/kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --destination=071690070779.dkr.ecr.ap-south-1.amazonaws.com/testreopk:lts"  // when we run docker in this step, we're running it via a shell on the docker build-pod container, 
+          sh "/kaniko/executor --context `pwd` --destination apurvajpaul/flipr:mps"  // when we run docker in this step, we're running it via a shell on the docker build-pod container, 
       }
     }
   }
